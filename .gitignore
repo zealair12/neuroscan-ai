@@ -1,0 +1,36 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pkl
+*.pk
+*.pt
+*.h5
+app/model/*.pkl
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+*.tmp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/
+
+# VSCode / Cursor
+.vscode/
+*.code-workspace
+
+# Test & secrets
+__tests__/
+.env
+.env.*
