@@ -31,17 +31,22 @@ def predict():
     image_bytes = image_file.read()
     image = Image.open(io.BytesIO(image_bytes))
 
-    # Preprocess image (resize, flatten, etc.)
     processed = preprocess_image(image)
+    print("🧪 Preprocessed image shape:", processed.shape)
+    prediction = model.predict(processed)
+    print("🧠 Raw prediction vector:", prediction[0])
+    predicted_class = np.argmax(prediction[0])
+    confidence = float(np.max(prediction[0]))
 
-    # Make prediction
-    prediction = model.predict([processed])
-    confidence = getattr(model, "predict_proba", lambda x: [[1]])([processed])[0]
+    class_labels = ["Glioma", "Meningioma", "Pituitary", "No Tumor"]
+    label = class_labels[predicted_class]
 
     return jsonify({
-        'prediction': int(prediction[0]),
-        'confidence': float(max(confidence))
+        'prediction': label,
+        'confidence': confidence
     })
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
